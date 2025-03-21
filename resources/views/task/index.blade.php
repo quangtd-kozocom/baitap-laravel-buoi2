@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm">
-                        @foreach($myTasks->take(5) as $task)
+                        @foreach($myTasks as $task)
                             <tr class="border-b border-gray-200 hover:bg-gray-50">
                                 <td class="py-3 px-6 text-left">
                                     <a href="{{ route('tasks.show', $task) }}" class="text-blue-500 hover:underline">
@@ -83,7 +83,7 @@
                         </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm">
-                        @foreach($myAssignedTasks->take(5) as $task)
+                        @foreach($myAssignedTasks as $task)
                             <tr class="border-b border-gray-200 hover:bg-gray-50">
                                 <td class="py-3 px-6 text-left">
                                     <a href="{{ route('tasks.show', $task) }}" class="text-blue-500 hover:underline">

@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use App\Enums\TaskStatus;
+use App\Observers\TaskObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $title
@@ -34,6 +38,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task whereUpdatedAt($value)
  * @mixin \Eloquent
  */
+#[ObservedBy(TaskObserver::class)]
 class Task extends Model
 {
     protected $fillable = [

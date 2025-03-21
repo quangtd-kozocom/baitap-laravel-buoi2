@@ -17,12 +17,14 @@ class TaskController extends Controller
         $myTasks = auth()
             ->user()
             ->myTasks()
-            ->paginate(10);
+            ->latest()
+            ->paginate(5);
 
         $myAssignedTasks = auth()
             ->user()
             ->assignedTasks()
-            ->paginate(10);
+            ->latest()
+            ->paginate(5);
 
         return view('task.index', compact('myTasks', 'myAssignedTasks'));
     }
