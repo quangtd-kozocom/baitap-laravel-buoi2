@@ -2,7 +2,12 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Task\TaskController;
 use Illuminate\Support\Facades\Route;
+
+Route::get("/" , static function () {
+    return to_route("tasks.index");
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -15,9 +20,15 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('tasks', static function () {
-        return view('task.index');
-    })->name('tasks.index');
+    Route::get('tasks/my-tasks', [TaskController::class, 'myTasks'])
+        ->name('tasks.my-tasks');
+    Route::get('tasks/assigned-tasks', [TaskController::class, 'assignTasks'])
+        ->name('tasks.assigned-tasks');
+    Route::resource('tasks', TaskController::class)
+        ->missing(function (Request $request) {
+            return redirect()->route('tasks.index');
+        });
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });

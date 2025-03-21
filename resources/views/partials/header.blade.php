@@ -1,6 +1,6 @@
 <div class="container mx-auto px-6 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-gray-800">
-        <a href="">Task Management</a>
+        <a href="{{ route("tasks.index") }}">Task Management</a>
     </h1>
 
     <nav class="flex items-center space-x-4">
